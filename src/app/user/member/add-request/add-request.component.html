@@ -1,0 +1,46 @@
+
+<app-navigation></app-navigation>
+
+<form action="#" method="post">
+  <div class="header">
+      <p>ADMIN POSITION</p>
+  </div>
+  <div class="description">
+    <p>You are currently a member of Qoubeegy. </p>
+    <p>GOOD NEWS! You can apply for an admin position.</p>
+  </div>
+  <div class="input">
+    <input type="text" class="button" id="email" placeholder="username" style="background-color: #86c232">
+    <input (click)="addRequest()" type="submit" class="button" id="submit" value="Apply" data-toggle="modal" data-target="#modalPush">
+  </div>
+</form>
+
+<!--Modal: modalPush-->
+<div class="modal fade" id="modalPush" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-notify modal-info" role="document">
+        <!--Content-->
+        <div class="modal-content text-center">
+            <!--Header-->
+            <div class="modal-header d-flex justify-content-center" style="background-color: #faed26">
+                <h3>Successfully applied for an admin position!</h3>
+            </div>
+
+            <!--Body-->
+            <div class="modal-body">
+
+                <i class="fa fa-bell fa-4x animated rotateIn mb-4" style="color:  #faed26"></i>
+                <div class="modal-body"> </div>
+                <p>Thank you for showing an interest.</p> 
+                <p>We will review your profile and will immediately send a notification once you've met the qualifications needed for the position! Have a good day! </p>
+
+                <p style="right: 0 !important">- Qoubeegy </p>
+            </div>
+
+            <!--Footer-->
+            <div class="modal-footer flex-center">
+                <a type="button" class="btn btn-outline-primary waves-effect" data-dismiss="modal" style="color: black">Back</a>
+            </div>
+        </div>
+        <!--/.Content-->
+    </div>
+</div>

@@ -1,0 +1,42 @@
+<app-navigation></app-navigation>
+
+<body>
+    <div class="container" style="top: 10%">
+      <h3>All Movie Bookings</h3>
+      <p></p>                                                                                      
+      <div class="table">          
+      <table class="table">
+        <thead style="background-color: yellow">
+          <tr>
+            <th>#</th>
+            <th>Username</th>
+            <th>Title</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Place</th>
+            <th>Seat</th>
+            <th>Price</th>
+            <th>OPTIONS</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let booking of arrBooking; let i=index">
+            <td>{{i+1}}</td>
+            <td>{{booking.Username}}</td>
+            <td>{{booking.Title}}</td>
+            <td>{{booking.Date}}</td>
+            <td>{{booking.Time}}</td>
+            <td>{{booking.Place}}</td>
+            <td>{{booking.Seat}}</td>
+            <td>{{booking.Price}}</td>
+            <td>
+              <button class="fa fa-times" (click)="deleteBooking(booking.MovieBookingId)" type="button" style="background-color: white !important; color: #46344E; font-size: 20px; text-align: center; width: 50px;"></button>
+            </td>
+          </tr>
+   
+        </tbody>
+      </table>
+      </div>
+    </div>
+</body>
+   

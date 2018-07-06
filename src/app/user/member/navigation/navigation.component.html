@@ -1,0 +1,43 @@
+<nav class="navbar navbar-inverse" style="background-color: #46344E; margin: 0 0 !important">
+        <div class="container-fluid" style="height: 10% !important">
+            <div class="container teal borderYtoX" style="width: 100%;">
+                <ul class="nav navbar-nav navbar-left">  
+                    <li><a href="user-qoubeegy"><img src="../../../../assets/Qoubeegy1.png"  style="border-radius: 50%; width: 33px;"> Qoubeegy</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li data-toggle="modal" data-target="#modalEditForm"><a><span class="glyphicon glyphicon-user"></span> Hi, {{phUser}}</a></li>
+                    <app-edit-profile></app-edit-profile>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <span class="caret"></span></a>
+                        <ul class="dropdown-menu" style="background-color: #46344E">
+                        <li>
+                            <a *ngIf="!admin" href="settings-profile" style="background-color: #46344E">Settings</a>
+                        </li>
+                        <li><a role="button" style="background-color: #46344E" (click)="signOut()">Sign Out</a></li>
+                        <li><a *ngIf="admin" href="view-all-user" style="background-color: #46344E">Users</a></li>
+                        <li><a *ngIf="admin" href="view-all-request" style="background-color: #46344E">Requests {{notif}}</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+</nav>
+
+<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+<div id="circularMenu1" class="circular-menu circular-menu-left active">
+
+    <a class="floating-btn" onclick="document.getElementById('circularMenu1').classList.toggle('active');">
+        <i class="fa fa-bars"></i>
+    </a>
+
+    <menu class="items-wrapper">
+        <a href="view-booking" class="menu-item fa fa-file-movie-o"></a>
+        <a href="view-favorite" class="menu-item fa fa fa-heart"></a>
+        <!-- <a href="view-all-booking" class="menu-item fa fa fa-heart"></a> -->
+        <a *ngIf="admin" href="view-all-showing" class="menu-item fa fa-file-movie-o"></a>
+        <a *ngIf="admin" href="view-all-booking" class="menu-item fa fa-video-camera"></a>
+    </menu>
+</div>
+
+

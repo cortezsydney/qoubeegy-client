@@ -1,0 +1,147 @@
+<app-navigation></app-navigation>
+
+<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+<body>
+    <div class="container" style="top: 10%">
+      <h3>My Movie Bookings</h3>
+      <p></p>                                                                                      
+      <div class="table">          
+      <table class="table">
+        <thead style="background-color: yellow">
+            <tr>
+                <th>#</th>
+                <th>Title</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Place</th>
+                <th>Seat</th>
+                <th>Price</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let booking of arrBooking; let i=index">
+                <td>{{i+1}}</td>
+                <td>{{booking.Title}}</td>
+                <td>{{booking.Date}}</td>
+                <td>{{booking.Time}}</td>
+                <td>{{booking.Place}}</td>
+                <td>{{booking.Seat}}</td>
+                <td>{{booking.Price}}</td>
+                <td>
+                    <button class="fa fa-times" type="button" (click)="deleteBooking(booking.MovieBookingId)" style="background-color: white !important; color: #46344E; font-size: 20px; text-align: center; width: 50px;"></button>
+                </td>
+            </tr>
+        </tbody>        
+      </table>
+      </div>
+    </div>
+</body>        
+
+<button class="addButton fa fa-plus-square-o" data-toggle="modal" data-target="#modalMovieForm" style="background-color: transparent"></button>
+<div class="modal fade" id="modalMovieForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div style="float: right">
+                    <a class="cancelbtn fa fa-times fa-2x" type="button" data-dismiss="modal" aria-label="Close"></a>
+                </div>
+                <div class="modal-header text-center">            
+                    <h3 class="modal-title w-100 font-weight-bold">Add Movie Booking</h3>   
+                </div>
+    
+                <div class="modal-body mx-3">
+                    <div class="md-form mb-5">
+                        <input [(ngModel)]="Title" type="email" class="form-control" placeholder="Movie Title" name="title">
+    
+                    </div>
+                    <div class="md-form mb-5">
+                        <input [(ngModel)]="Place" type="text" class="form-control"  placeholder="Movie House" name="place">
+                       
+                    </div>
+                    <div class="md-form mb-5"> 
+                        <input [(ngModel)]="Date" type="text" class="form-control" placeholder="Date of Showing" name="date">
+                    
+                    </div>
+                    <div class="md-form mb-5"> 
+                        <input [(ngModel)]="Time" type="text" class="form-control" placeholder="Time of Showing" name="time">
+                    
+                    </div>
+                    <div class="md-form mb-5"> 
+                        <input [(ngModel)]="Seat" type="text" class="form-control" placeholder="Seat" name="seat">
+                    </div>
+                </div>
+    
+                <div class="modal-footer d-flex justify-content-center">
+                    <button type="submit" (click)="signUp()">Book</button>
+                    <div  *ngIf="close" data-toggle="modal" data-target="#modalCoupon"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!-- <div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div style="float: right">
+                <a class="cancelbtn fa fa-times fa-2x" type="button" data-dismiss="modal" aria-label="Close"></a>
+            </div>
+            <div class="modal-header text-center">            
+                <h3 class="modal-title w-100 font-weight-bold">Add Booking</h3>   
+            </div>
+            <div class="modal-body mx-3">
+                <div class="md-form mb-5">
+                    <input [(ngModel)]="Title" type="text" class="form-control" placeholder="Movie Title" name="title">
+                    <div *ngIf="emptyTitle" class="prompt"> Movie Title is required </div>
+                  
+                </div>
+                <div class="md-form mb-5">
+                    <input [(ngModel)]="Description" type="text" class="form-control"  placeholder="Description" name="description">
+                    <div *ngIf="emptyDescription" class="prompt"> Description is required </div>
+                </div>
+                <div class="md-form mb-5">
+                    <input [(ngModel)]="Place" type="text" class="form-control"  placeholder="Movie House" name="place">
+                    <div *ngIf="placeEmpty" class="prompt"> Movie House is required </div>
+                </div>
+                <div class="md-form mb-5"> 
+                    <input [(ngModel)]="Datex" type="String" class="form-control" placeholder="Date" name="date">
+                    <div *ngIf="dateEmpty" class="prompt"> Date is required </div>
+                </div>
+                <div class="md-form mb-5"> 
+                    <input [(ngModel)]="Time" type="text" class="form-control" placeholder="Time" name="time">
+                    <div *ngIf="timeEmpty" class="prompt"> Showing Time is required </div>
+                </div>
+                <div class="md-form mb-5"> 
+                    <input [(ngModel)]="Price" type="number" class="form-control" placeholder="Price" name="price">
+                    <div *ngIf="priceEmpty" class="prompt"> Ticket Price is required </div>
+                </div>
+            </div>
+
+            <div class="modal-footer d-flex justify-content-center">
+                <button type="submit" (click)="addMovieShowing()">Add Movie</button>
+                <div  *ngIf="close" data-toggle="modal" data-target="#modalCoupon"></div>
+            </div>
+        </div>
+    </div>
+</div> -->
+<!-- 
+
+<nav><span class="text">NEXT</span>
+    <div class="left">
+      <a href="" class="prev"></a>
+      <a href="">1</a>
+      <a href="">2</a>
+      <a href="">3</a>
+      <span class="line"></span>
+    </div>
+    <div class="right">
+      <a href="" class="next"></a>
+      <a href="">4</a>
+      <a href="">5</a>
+      <a href="">6</a>
+      
+      <span class="line"></span>
+     </div>
+  </nav>
+
+  
+ -->

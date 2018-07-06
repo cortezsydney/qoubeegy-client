@@ -1,0 +1,30 @@
+.signIn-container {
+    background-color: #25274D;
+    color: white;
+    height: 70%;
+    width: 70%;
+}
+.submit-button {
+    background-color: #AAABB8;
+    border: none;
+    color: white;
+    padding: 8px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    color: #44318D;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 15%;
+}
+
+.login-form {
+    text-align: center;
+}
+
+.prompt{
+    text-align: right; 
+    color: red;
+    font-size: 13px;
+}

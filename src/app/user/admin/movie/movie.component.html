@@ -1,0 +1,90 @@
+<app-navigation></app-navigation>
+
+<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+<body>
+    <div class="container" style="top: 10%">
+      <h3>All Movie Showing Schedules</h3>
+      <p></p>                                                                                      
+      <div class="table">          
+      <table class="table">
+        <thead style="background-color: yellow">
+            <tr>
+                <th>#</th>
+                <th>Title</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Place</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let showing of arrShowing; let i=index">
+                <td>{{i+1}}</td>
+                <td>{{showing.Title}}</td>
+                <td>{{showing.Date}}</td>
+                <td>{{showing.Time}}</td>
+                <td>{{showing.Place}}</td>
+                <td>
+                    <button class="fa fa-times" type="button" (click)="deleteShowing(showing.MovieShowingId)" style="background-color: white !important; color: #46344E; font-size: 20px; text-align: center; width: 50px;"></button>
+                </td>
+            </tr>
+        </tbody>        
+      </table>
+      </div>
+    </div>
+</body>        
+
+<button class="addButton fa fa-plus-square-o" data-toggle="modal" data-target="#modalLoginForm" style="background-color: transparent !important"></button>
+<div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div style="float: right">
+                    <a class="cancelbtn fa fa-times fa-2x" type="button" data-dismiss="modal" aria-label="Close"></a>
+                </div>
+                <div class="modal-header text-center">            
+                    <h3 class="modal-title w-100 font-weight-bold">Add Movie Showing Schedule</h3>   
+                </div>
+    
+                <div class="modal-body mx-3">
+                    <div class="md-form mb-5">
+                        <input [(ngModel)]="Title" type="email" class="form-control" placeholder="Movie Title" name="title">
+                        <div *ngIf="emptyTitle" class="prompt"> Title is required </div>
+                    </div>
+                    <div class="md-form mb-5">
+                        <input [(ngModel)]="Description" type="text" class="form-control"  placeholder="Description" name="description">
+                        <div *ngIf="emptyDescription" class="prompt"> Description is required </div>
+                    </div>
+                    <div class="md-form mb-5">
+                        <input [(ngModel)]="Place" type="text" class="form-control"  placeholder="Movie House" name="place">
+                        <div *ngIf="emptyPlce" class="prompt"> Movie House is required </div>
+                    </div>
+                    <div class="md-form mb-5"> 
+                        <input [(ngModel)]="Datex" type="date" class="form-control" placeholder="Date of Showing" name="date">
+                        <div *ngIf="emptyDate" class="prompt"> Showing Date is required </div>
+                    </div>
+                    <div class="md-form mb-5"> 
+                        <input [(ngModel)]="Time" type="text" class="form-control" placeholder="Time of Showing" name="time">
+                        <div *ngIf="emptyTime" class="prompt"> Showing Time is required </div>
+                    </div>
+                    <div class="md-form mb-5"> 
+                        <input [(ngModel)]="Price" type="string" class="form-control" placeholder="Ticket Price" name="price">
+                        <div *ngIf="emptyPrice" class="prompt"> Price is required </div>
+                        <div *ngIf="invalidPrice" class="prompt"> Must be float</div>
+                    </div>
+                    <div class="md-form mb-5"> 
+                        <input [(ngModel)]="Details" type="string" class="form-control" placeholder="Details" name="details">
+                        <div *ngIf="emptyDetails" class="prompt"> Details is required </div>
+                    </div>
+                    <div class="md-form mb-5"> 
+                        <input [(ngModel)]="CoverPhoto" type="string" class="form-control" placeholder="Cover Photo" name="coverPhoto">
+                        <div *ngIf="emptyCoverPhoto" class="prompt"> Cover Photo is required </div>
+                    </div>
+                </div>
+    
+                <div class="modal-footer d-flex justify-content-center">
+                    <button type="submit" (click)="addMovieShowing()">Add</button>
+                    <div  *ngIf="close" data-toggle="modal" data-target="#modalCoupon"></div>
+                </div>
+            </div>
+        </div>
+    </div>
