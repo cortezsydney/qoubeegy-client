@@ -2,7 +2,6 @@
 
 div.container a{
     color: #FFF;
-    text-decoration: none;
     font: 20px Raleway;
     margin: 0px 10px;
     padding: 10px 10px;
@@ -21,7 +20,7 @@ div.borderYtoX a:before, div.borderYtoX a:after{
     height: 100%;
     width: 2px;
     content: '';
-    background: #FFF;
+    background: #fff;
     transition: all 0.3s;
 }
 
@@ -39,18 +38,4 @@ div.borderYtoX a:hover:before, div.borderYtoX a:hover:after{
     opacity: 1;
     height: 2px;
     width: 100%;
-}
-
-.login-container {
-    display: flex;
-    justify-content: space-evenly;
-}
-
-.login-left {
-    width: 60%;
-}
-
-.login-right {
-    width: 40%;
-    float: right;
 }

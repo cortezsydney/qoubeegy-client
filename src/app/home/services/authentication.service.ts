@@ -7,6 +7,10 @@ export class AuthenticationService {
 
   constructor(private httpClient : HttpClient, private cookieService: CookieService) { }
 
+  getSession(){
+    return this.httpClient.get('http://localhost:3001/api/get-session', {withCredentials: true});
+  }
+
   signIn(Username:String, Password:String){
     const body = {
       Username: Username, Password: Password
@@ -18,6 +22,10 @@ export class AuthenticationService {
         return res;
       }));
 
+  }
+  
+  viewMovies(){
+    return this.httpClient.get<any>('http://localhost:3001/api/all/movies');
   }
 
   viewShowingByTitle(Title: String){
@@ -40,13 +48,5 @@ export class AuthenticationService {
       Username: Username, FirstName: FirstName, LastName: LastName, Password: Password
     }
     return this.httpClient.post<any>('http://localhost:3001/api/Member/add', body);
-  }
-
-  viewMovies(){
-    return this.httpClient.get<any>('http://localhost:3001/api/all/movies');
-  }
-
-  getSession(){
-    return this.httpClient.get('http://localhost:3001/api/get-session', {withCredentials: true});
   }
 }

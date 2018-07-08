@@ -1,14 +1,13 @@
 <app-navigation></app-navigation>
-<nav class="navbar navbar-inverse" style="background-color: #46344E; margin: 0 0 0 0 !important; height: 5%"> 
-  <button data-toggle="collapse" type="here" data-target="#demo" style="width: 100%; height: 100%; background-color: #46344E; height: 5% !important; color: white">Customize Search</button>
-  <div id="demo" class="collapse">
-        <input [(ngModel)]="Title" placeholder="Title" style="width:100%" (keyup)="viewBy()">
-        <input [(ngModel)]="Place" placeholder="Movie House" style="width:100%" (keyup)="viewBy()">
-  </div>
-</nav>
 
-<div>
-  
+<div style="background-color: #46344E; margin: 0 0 0 0;"> 
+    <button data-toggle="collapse" type="here" data-target="#demo" style="height: 100%; background-color: #46344E; height: 30% !important; color: white">Customize Search</button>
+    <div id="demo" class="collapse">
+            <input [(ngModel)]="Title" placeholder="Title" style="width:100%" (keyup)="viewBy()">
+            <input [(ngModel)]="Place" placeholder="Movie House" style="width:100%" (keyup)="viewBy()">
+    </div>
+</div>
+
 
 <div>
     <div id="wrap" >
@@ -19,7 +18,7 @@
       
     <section id="team" class="pb-5"  style="width: 90%; margin-left: 140px">
       <div class="container">
-          <h5 class="section-title h1" style="left:0">NOW SHOWING</h5>
+          <h5 class="section-title h1" style="left:0">Now Showing</h5>
     
           <div class="row" *ngIf="!searchEmpty">
               <div class="col-md-3" *ngFor="let movie of movies">
@@ -33,24 +32,11 @@
                           <div class="backside" style="outline-style: groove;  outline-color: #86c232; background-color: black; opacity: 0.8; width: 200px">
                               <div class="card" style="background-color: black; opacity: 0.8">
                                   <div class="card-body text-center mt-4">
-                                      <h2 class="card-title"><a href={{movie.Details}}>{{movie.Title}}</a></h2>
-                                      <p class="card-text" style="color: white">{{movie.Description}}</p>
-                                        
-                                        <ul class="list-inline" style="bottom: 0">
-                                             
-                                                <li class="list-inline-item">
-                                                    <a class="social-icon text-xs-center" target="_blank">
-                                                        <a role="button" (click) = "addFavorite(movie.MovieId)" class="btn btn-primary" style="background-color: lavender; color: black">Favorite <i class="fa fa-heart-o"></i></a>
-                                                    </a>    
-                                                </li>   
-
-                                            
-                                            <li class="list-inline-item">
-                                                <a class="social-icon text-xs-center" target="_blank">
-                                                    <a role="button" (click) = "searchMovie(movie.Title)" data-toggle="modal" data-target="#modalBookForm2" class="btn btn-primary">Book Movie <i class="fa fa-plus"></i></a>
-                                                </a>
-                                            </li>
-                                           
+                                    <h2 class="card-title"><a style="color: #faed26" href={{movie.Details}}>{{movie.Title}}</a></h2>
+                                      <p style="color: white">{{movie.Description}}</p>
+                                        <ul class="list-inline" style="position:absolute; bottom: 0"> 
+                                            <a role="button" (click) = "addFavorite(movie.MovieId)" class="btn btn-primary" style="background-color: red; color: white; margin: 0 14px">Favorite <i class="fa fa-heart-o"></i></a>                       
+                                            <a role="button" (click) = "searchMovie(movie.Title)" data-toggle="modal" data-target="#modalBookForm2" class="btn btn-primary" >Book <i class="fa fa-plus"></i></a>
                                         </ul>
                                   </div>
                                 </div>
@@ -63,56 +49,53 @@
     </section> 
   </div>
 
-
 <div class="modal fade" id="modalBookForm2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
-      <div class="modal-dialog" role="document">
-          <div class="modal-content">
-              <div style="float: right">
-                  <a class="cancelbtn fa fa-times fa-2x" type="button" data-dismiss="modal" aria-label="Close"></a>
-              </div>
-              <div class="modal-header text-center">            
-                  <h3 class="modal-title w-100 font-weight-bold">Add Movie Booking</h3>   
-              </div>
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div style="float: right">
+                <a class="cancelbtn fa fa-times fa-2x" type="button" data-dismiss="modal" aria-label="Close"></a>
+            </div>
+            <div class="modal-header text-center">            
+                <h3 class="modal-title w-100 font-weight-bold">Add Movie Booking</h3>   
+            </div>
 
-              <body>
-                  <div class="container" style="top: 10%; width: 100%; background-color: white">                                                                                    
-                    <div class="table">          
-                    <table class="table">
-                      <thead style="background-color: yellow">
-                          <tr>
-                              <th>#</th>
-                              <th>Title</th>
-                              <th>Place</th>
-                              <th>Date</th>
-                              <th>Time</th>
-                              <th>Price</th>
-                              <th>Seat</th>
-                              <th></th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr *ngFor="let title of titleSearch; let i=index">
-                              <td>{{i+1}}</td>
-                              <td>{{title.Title}}</td>
-                              <td>{{title.Place}}</td>
-                              <td>{{title.Date}}</td>
-                              <td>{{title.Time}}</td>
-                              <td>P{{title.Price}}</td>
-                              <div class="md-form mb-5">
-                                <input [(ngModel)]="SeatLetter" class="form-control" placeholder="Row [A-J]" name="seatLetter">
-                                <input [(ngModel)]="SeatNumber" type="number" class="form-control" placeholder="Col [0-9]" name="seatRow">
+            <body>
+                <div class="container" style="top: 10%; width: 100%; background-color: white">                                                                                    
+                <div class="table">          
+                <table class="table">
+                    <thead style="background-color: yellow">
+                        <tr>
+                            <th>#</th>
+                            <th>Title</th>
+                            <th>Place</th>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Price</th>
+                            <th>Seat</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let title of titleSearch; let i=index">
+                            <td>{{i+1}}</td>
+                            <td>{{title.Title}}</td>
+                            <td>{{title.Place}}</td>
+                            <td>{{title.Date}}</td>
+                            <td>{{title.Time}}</td>
+                            <td>P{{title.Price}}</td>
+                            <div class="md-form mb-5">
+                                <input [(ngModel)]="title.Seat" class="form-control" placeholder="[A-J, 0-9]" name="seatLetter">
                                 <div *ngIf="seatEmpty" class="prompt" style="color: red"> Seat is required </div>
                                 <div *ngIf="invalidSeat" class="prompt" style="color: red"> Seat is already taken </div>
-                              </div>
-                              <td>
-                                  <button class="fa fa-check" type="button" (click)="addBooking(title.MovieShowingId, SeatLetter+SeatNumber)" style="background-color: white !important; color: #46344E; font-size: 20px; text-align: center; width: 20px;"></button>
-                              </td>
-                          </tr>
-                        </tbody>        
-                    </table>
-                    </div>
-                  </div>
-              </body>  
-        </div>
+                            </div>
+                            <td>
+                                <button class="fa fa-check" type="button" (click)="addBooking(title.MovieShowingId, title.Seat)" style="background-color: white !important; color: #46344E; font-size: 20px; text-align: center; width: 20px;"></button>
+                            </td>
+                        </tr>
+                </tbody>        
+            </table>
+            </div>
+            </div>
+        </body>        
     </div>
 </div>

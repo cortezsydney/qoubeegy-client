@@ -1,9 +1,9 @@
-.signIn-container {
-    background-color: #25274D;
-    color: white;
-    height: 70%;
-    width: 70%;
+@import 'https://fonts.googleapis.com/css?family=Raleway';
+
+div{
+    font: 20px Raleway;
 }
+
 .submit-button {
     background-color: #AAABB8;
     border: none;

@@ -1,31 +1,31 @@
 <app-navigation></app-navigation>
 
 <div>
-  <aside  class="col-md-3 profile-card" *ngFor="let user of arrRequest" style=" left: 140px; margin: 2em 3.5em; flex-wrap: wrap;">
-    <header>     
-      <span> <img src="../../../../assets/johndoe.png"> </span>      
-      <h1 style="color: yellow">{{user.FirstName}} {{user.LastName}}</h1>
-      <h2>{{user.Username}}</h2>
-    </header>
-
-    <div class="profile-bio">
-      <p>{{user.UserType}}</p>
-      <p style="color: red; text-align: center">Date of application: {{user.TimeDate}}<p>
-      <p style="text-align: center">insert SOMETHING HERE<br /> PARA COOL INTEREST CREATE A MATCHER 
-      <br />Maybe date PARA MA <br />MATCH SA DESC 
-      CRIPTION <br />
-      </p>    
-    </div>
-
-    <ul class="profile-social-links">
-      <li><a>
-          <span class="fa fa-check" type="button" (click)="acceptRequest(user.UserId)" style="color: red; font-size: 20px; text-align: center; width: 30px; height: 40px; left: 0"></span>
-        </a>
-      </li>
-      <li><a>
-          <span class="fa fa-times" type="button" (click)="rejectRequest(user.UserId)" style="color: yellow; font-size: 20px; text-align: center; width: 30px; height: 40px; left: 0"></span>
-        </a>
-      </li>
-    </ul>
-  </aside>
-</div>
+    <aside  class="col-md-3 profile-card" *ngFor="let user of arrRequest;" style=" left: 140px; margin: 2em 3.5em; flex-wrap: wrap;">
+      <header>     
+        <span> <img src="../../../../assets/johndoe.png"> </span>      
+        <h1 style="color: yellow">{{user.FirstName}} {{user.LastName}}</h1>
+        <h2>{{user.Username}}</h2>
+      </header>
+  
+      <div class="profile-bio">
+       <p style="text-align: left"> Member since: </p>
+       <h4 style="color: #faed26; text-align: center;"> {{user.Since}} </h4>
+       <p> Date of Application: </p>
+       <h3 style="color: red; text-align: center;"> {{user.TimeDate}} </h3>
+      </div>
+  
+      <ul class="profile-social-links">
+        <li>
+          <a>
+            <span class="fa fa-check" type="button" (click)="acceptRequest(user.UserId)" style="color: #faed26; font-size: 20px; text-align: center; width: 30px; height: 40px; left: 0"></span>
+          </a>
+        </li>
+        <li>
+            <a>
+              <span class="fa fa-times" type="button" (click)="rejectRequest(user.UserId)" style="color: red; font-size: 20px; text-align: center; width: 30px; height: 40px; left: 0"></span>
+            </a>
+          </li>
+      </ul>
+    </aside>
+  </div>

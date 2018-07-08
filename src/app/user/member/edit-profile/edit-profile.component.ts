@@ -31,8 +31,7 @@ export class EditProfileComponent implements OnInit {
   User;
   Prev;
 
-  constructor(private authenticationService: ServicesService, private router:Router) { 
-  }
+  constructor(private authenticationService: ServicesService, private router:Router) {}
 
   ngOnInit() {
     this.refresh();
@@ -60,7 +59,7 @@ export class EditProfileComponent implements OnInit {
       console.log("success edited profile");
      
       this.router.navigateByUrl('/home');
-      this.refresh();
+      location.reload();
     }, (err) =>{
       switch(err.error.status){
         case 1002: this.emptyFirstName = true; break;
@@ -82,5 +81,4 @@ export class EditProfileComponent implements OnInit {
         this.router.navigateByUrl('#');
     });
   }
- 
 }

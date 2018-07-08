@@ -111,6 +111,7 @@ header h2 {
 
 aside:hover .profile-bio {
   opacity: 1;
+  text-align:  center;
 }
 
 .profile-bio p:first-child {
@@ -120,8 +121,7 @@ aside:hover .profile-bio {
 
 .profile-social-links {
   position: relative;
-  margin-top: -440px;
-  margin-left: -100px;
+  margin-top: -370px;
   list-style-type: none;
   opacity: 0;
   transition: all ease 0.5s;

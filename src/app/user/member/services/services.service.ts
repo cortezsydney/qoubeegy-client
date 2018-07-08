@@ -41,12 +41,16 @@ export class ServicesService {
   }
   
   deleteBooking(MovieBookingId: Number){
-    console.log(MovieBookingId)
     return this.httpClient.delete<any>(`http://localhost:3001/api/booking/delete/${MovieBookingId}`,  {withCredentials: true});
   }
 
+  
+  deleteBookingByAdmin(MovieBookingId: Number){
+    console.log(MovieBookingId)
+    return this.httpClient.delete<any>(`http://localhost:3001/api/booking/delete/user/${MovieBookingId}`,  {withCredentials: true});
+  }
+
   deleteFavorite(FavoriteId: Number){
-    console.log(FavoriteId + "checl")
     return this.httpClient.delete<any>(`http://localhost:3001/api/favorite/delete/${FavoriteId}`, {withCredentials: true});
   }
 
@@ -79,11 +83,21 @@ export class ServicesService {
     return this.httpClient.post<any>('http://localhost:3001/api/movie/add', body, {withCredentials: true});
   }
 
+  addShowing(MovieId: Number, MovieHouseId: Number, Date: String, Time: String){
+    const body = {
+      MovieId: MovieId, MovieHouseId: MovieHouseId, Time: Time, Date: Date
+    }
+    return this.httpClient.post<any>('http://localhost:3001/api/showing/add', body, {withCredentials: true});
+  }
+
   deleteShowingSchedule(MovieShowingId: Number){
     console.log(MovieShowingId)
     return this.httpClient.delete<any>(`http://localhost:3001/api/all/movies/schedules/${MovieShowingId}`, {withCredentials: true});
   }
 
+  viewAllHouses(){
+    return this.httpClient.get<any>(`http://localhost:3001/api/all/movie-houses`);
+  }
 
   viewAllShowingSchedules(){
     return this.httpClient.get<any>(`http://localhost:3001/api/all/movies/schedules`, {withCredentials: true});
@@ -108,6 +122,14 @@ export class ServicesService {
 
   viewBookingByUser(){
     return this.httpClient.get<any>('http://localhost:3001/api/booking/all', {withCredentials: true});
+  }
+
+  viewEachBookings(UserId: Number){
+    return this.httpClient.get<any>(`http://localhost:3001/api/all/movies/bookings/${UserId}`, {withCredentials: true});
+  }
+
+  viewEachFavorites(UserId: Number){
+    return this.httpClient.get<any>(`http://localhost:3001/api/all/view/favorite/${UserId}`, {withCredentials: true});
   }
 
   viewAllUsers(){

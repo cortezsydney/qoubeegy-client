@@ -1,3 +1,5 @@
+@import 'https://fonts.googleapis.com/css?family=Raleway';
+
 #wrap {
     margin: 50px 100px;
     display: inline-block;
@@ -12,8 +14,8 @@ input[type="text"] {
     height: 60px;
     font-size: 55px;
     display: inline-block;
-    font-family: "Lato";
-    font-weight: 100;
+    font-family: Raleway;
+    font-weight: 80;
     border: none;
     outline: none;
     color: #86c232;
@@ -63,29 +65,6 @@ input[type="submit"]:hover {
     background-color: #86c232;
 }
 
-
-.SearchIcon{ 
-    color:#fff;
-   
-}
-
-.SearchButton{
-    background-color:#ED1C24;
-    border-radius:1px;
-}
-
-.SearchButton:hover{
-    background-color:#C4161C;
-}
-
-
-#team {
-    background: white !important;
-    width: 100%;
-    height: 100% !important;
-}
-
-
 section {
     padding: 60px 0;
 }
@@ -94,7 +73,6 @@ section .section-title {
     text-align: left;
     color: #5A5560;
     margin-bottom: 50px;
-    text-transform: uppercase;
 }
 
 #team .card {
@@ -137,9 +115,7 @@ section .section-title {
 
 .frontside,
 .backside {
-    
     backface-visibility: hidden;
-   
     transition: 1s;
     transform-style: preserve-3d;
 }

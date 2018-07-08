@@ -6,10 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home-page.component.css']
 })
 export class HomePageComponent implements OnInit {
-  file: String;
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
-    this.file = '../../../assets/CP1.jpg';
-  }
+  ngOnInit() {}
 }

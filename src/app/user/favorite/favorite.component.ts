@@ -9,11 +9,11 @@ import {Router} from '@angular/router';
 })
 export class FavoriteComponent implements OnInit {
   arrFavorite;
+  titleSearch;
   Title: String;
   Place: String;
   SeatLetter: String;
   SeatNumber: String;
-  titleSearch;
   titleEmpty: Boolean;
   placeEmpty: Boolean;
   searchEmpty: Boolean;

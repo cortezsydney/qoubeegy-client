@@ -9,18 +9,142 @@
     </header>
 
     <div class="profile-bio">
-      <p style="color: #faed26">{{user.UserType}}</p>
-      <p style="text-align: center">insert SOMETHING HERE<br /> PARA COOL INTEREST CREATE A MATCHER 
-      <br />Maybe date PARA MA <br />MATCH SA DESC 
-      CRIPTION <br />
-      </p>    
+     <h4 style="color: red">{{user.UserType}}</h4>
+     <h5>Member since: {{user.Since}}</h5>
+     <div style="width: 50%; float: left" role="button" (click) = "viewBookings(user.UserId)" role="button" data-toggle="modal" data-target="#modalShowFavorite">
+        <h3 style="color: #faed26">{{user.booking}}</h3>
+          <h4>BOOKINGS</h4> 
+     </div>
+     <div style="width: 50%; float: right" (click) = "viewFavorites(user.UserId);viewBookings(user.UserId)" role="button" data-toggle="modal" data-target="#modalShowFavorite">
+         <h3 style="color: #faed26">{{user.favorite}}</h3>
+         <h4>FAVORITES</h4> 
+     </div>
     </div>
 
     <ul class="profile-social-links">
       <li><a>
-          <span class="fa fa-times" type="button" (click)="deleteUser(user.UserId)" style="color: yellow; font-size: 20px; text-align: center; width: 30px; height: 40px; left: 0"></span>
+          <span class="fa fa-times" type="button" (click)="deleteUser (user.UserId)" style="color: #faed26; font-size: 20px; text-align: center; width: 30px; height: 40px; left: 0"></span>
         </a>
       </li>
     </ul>
   </aside>
+</div>
+
+<!-- 
+<div class="modal fade" id="modalShowBooking" tabindex="-1" role="dialog" aria-hidden="true" >
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div style="float: right">
+                <a class="cancelbtn fa fa-times fa-2x" type="button" data-dismiss="modal" aria-label="Close"></a>
+            </div>
+            <div class="modal-header text-center">            
+                <h3 class="modal-title w-100 font-weight-bold">View Booking</h3>   
+            </div>
+
+            <body>
+                <div class="container" style="top: 10%; width: 100%; background-color: white">                                                                                    
+                <div class="table">          
+                <table class="table">
+                    <thead style="background-color: yellow">
+                        <tr>
+                            <th>#</th>
+                            <th>Title</th>
+                            <th>Place</th>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Price</th>
+                            <th>Seat</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let book of numBooking; let i=index">
+                            <td>{{i+1}}</td>
+                            <td>{{book.Title}}</td>
+                            <td>{{book.Place}}</td>
+                            <td>{{book.Date}}</td>
+                            <td>{{book.Time}}</td>
+                            <td>P{{book.Price}}</td>
+                            <td>P{{book.Seat}}</td>
+                        </tr>
+                </tbody>        
+            </table>
+            </div>
+            </div>
+        </body>        
+    </div>
+</div> -->
+
+
+<div class="modal fade" id="modalShowFavorite" tabindex="-1" role="dialog" aria-hidden="true" >
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div style="float: right">
+                <a class="cancelbtn fa fa-times fa-2x" type="button" data-dismiss="modal" aria-label="Close"></a>
+            </div>
+           
+
+            <div class="modal-header text-center">            
+                <h3 class="modal-title w-100 font-weight-bold">View Bookings</h3>   
+            </div>
+
+                
+            <body>
+                <div class="container" style="top: 10%; width: 100%; background-color: white">                                                                                    
+                <div class="table">          
+                <table class="table" style="font-size: 18px">
+                    <thead style="background-color: #faed26">
+                        <tr>
+                            <th>#</th>
+                            <th>Title</th>
+                            <th>Place</th>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Price</th>
+                            <th>Seat</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let book of numBooking; let i=index">
+                            <td>{{i+1}}</td>
+                            <td>{{book.Title}}</td>
+                            <td>{{book.Place}}</td>
+                            <td>{{book.Date}}</td>
+                            <td>{{book.Time}}</td>
+                            <td *ngIf="book.Price">P{{book.Price}}</td>
+                            <td>{{book.Seat}}</td> 
+                        </tr>
+                    </tbody>        
+                </table>
+                </div>
+                </div>
+            </body>
+
+            <div class="modal-header text-center">            
+                <h3 class="modal-title w-100 font-weight-bold">View Favorite</h3>   
+            </div>
+
+            <body>
+                <div class="container" style="top: 10%; width: 100%; background-color: white">                                                                                    
+                <div class="table">          
+                <table class="table" style="font-size: 18px">
+                    <thead style="background-color: #faed26">
+                        <tr>
+                            <th>#</th>
+                            <th>Title</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let book of numFavorite; let i=index">
+                            <td>{{i+1}}</td>
+                            <td>{{book.Title}}</td>
+                            <td>{{book.Description}}</td>
+                           
+                        </tr>
+                    </tbody>        
+                </table>
+                </div>
+                </div>
+            </body>   
+    </div>
 </div>

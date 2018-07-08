@@ -1,0 +1,44 @@
+
+<!-- 
+<div class="modal fade" id="modalShowBooking" tabindex="-1" role="dialog" aria-hidden="true" >
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div style="float: right">
+                <a class="cancelbtn fa fa-times fa-2x" type="button" data-dismiss="modal" aria-label="Close"></a>
+            </div>
+            <div class="modal-header text-center">            
+                <h3 class="modal-title w-100 font-weight-bold">View Booking</h3>   
+            </div>
+
+            <body>
+                <div class="container" style="top: 10%; width: 100%; background-color: white">                                                                                    
+                <div class="table">          
+                <table class="table">
+                    <thead style="background-color: yellow">
+                        <tr>
+                            <th>#</th>
+                            <th>Title</th>
+                            <th>Place</th>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Price</th>
+                            <th>Seat</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let book of numBooking; let i=index">
+                            <td>{{i+1}}</td>
+                            <td>{{book.Title}}</td>
+                            <td>{{book.Place}}</td>
+                            <td>{{book.Date}}</td>
+                            <td>{{book.Time}}</td>
+                            <td>P{{book.Price}}</td>
+                            <td>P{{book.Seat}}</td>
+                        </tr>
+                </tbody>        
+            </table>
+            </div>
+            </div>
+        </body>        
+    </div>
+</div> -->

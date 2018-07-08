@@ -11,9 +11,7 @@ export class BookingComponent implements OnInit {
   emptyBooking : Boolean;
   arrBooking;
   
-  constructor(private authenticationService: ServicesService, private router:Router){ 
-
-  }
+  constructor(private authenticationService: ServicesService, private router:Router){}
 
   ngOnInit() {
     this.refresh();
@@ -21,6 +19,7 @@ export class BookingComponent implements OnInit {
 
   refresh(){
     this.emptyBooking = false;
+    
     this.authenticationService.viewBookingByUser()
     .subscribe((res) => {
       this.arrBooking = res.data;
@@ -36,7 +35,6 @@ export class BookingComponent implements OnInit {
       console.log("success delete")
       location.reload();
     }, (err) =>{
-      console.log("failed delete")
       console.log(err.error.message);
     }); 
   }

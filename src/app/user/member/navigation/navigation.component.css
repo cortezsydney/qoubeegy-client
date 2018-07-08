@@ -48,9 +48,6 @@ div.borderYtoX a:hover:before, div.borderYtoX a:hover:after
     width: 100%;
 }
 
-/*circular-menu circular-menu-left active
-*/
-
 body {
     background-color: #EDEDED;
   }
@@ -120,6 +117,7 @@ body {
   
   .circular-menu .menu-item:hover {
     background-color: yellow;
+    color: black;
   }
   
   .circular-menu.active .menu-item {

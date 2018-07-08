@@ -9,7 +9,6 @@ import {ServicesService} from './../services/services.service';
   styleUrls: ['./navigation.component.css']
 })
 export class NavigationComponent implements OnInit {
-  phUser: String;
   admin: Boolean;
   notif: Number;
   User;
@@ -22,12 +21,12 @@ export class NavigationComponent implements OnInit {
 
   refresh(){
     this.User = this.authenticationService.getSession();
-    this.phUser = this.User.FirstName;
+    if(!this.User.FirstName) console.log("HERE");
     if(this.User.UserType === "ADMIN") this.admin = true;
+
     this.authenticationService.viewRequests()
     .subscribe((result) => {
       this.notif = result.data.length;
-      console.log(this.notif)
     }); 
   }
 

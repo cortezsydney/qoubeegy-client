@@ -1,3 +1,11 @@
+
+@import 'https://fonts.googleapis.com/css?family=Raleway';
+
+div{
+    font: 20px Raleway;
+}
+
+
 #wrap {
     margin: 50px 100px;
     display: inline-block;
@@ -94,7 +102,6 @@ section .section-title {
     text-align: left;
     color: #5A5560;
     margin-bottom: 50px;
-    text-transform: uppercase;
 }
 
 #team .card {

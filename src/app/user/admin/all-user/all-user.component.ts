@@ -10,11 +10,65 @@ import {Router} from '@angular/router';
 export class AllUserComponent implements OnInit {
   arrUser;
   arrRequest;
+  numBooking;
+  numFavorite;
 
   constructor(private authenticationService: ServicesService, private router:Router){ }
 
   ngOnInit() {
     this.refresh();
+  }
+
+  clearArr(arr){
+    Object.keys(arr).forEach(key=>{
+      delete arr[key];
+    })
+  }
+
+  bookingByUser(selectedUserId: Number, i: number){
+    this.authenticationService.viewEachBookings(selectedUserId)
+    .subscribe((res) => {
+      this.arrUser[i].booking= res.data.length;
+    }, (err) =>{
+      console.log(err.error.message);
+      if(err.error.status == 201) this.arrUser[i].booking= 0;
+      if(err.error.status == 1005 || err.error.status == 1007) this.router.navigateByUrl('/home');
+    }); 
+  }
+
+  viewBookings(selectedUserId: Number, i: number){
+    
+    this.authenticationService.viewEachBookings(selectedUserId)
+    .subscribe((res) => {
+      this.numBooking = res.data;
+    }, (err) =>{
+      console.log(err.error.message);
+      this.clearArr(this.numBooking);
+      if(err.error.status == 1005 || err.error.status == 1007) this.router.navigateByUrl('/home');
+    }); 
+  }
+
+  viewFavorites(selectedUserId: Number, i: number){
+    console.log("huh")
+    this.authenticationService.viewEachFavorites(selectedUserId)
+    .subscribe((res) => {
+      this.numFavorite = res.data;
+    }, (err) =>{
+      console.log(err.error.message);
+      this.clearArr(this.numFavorite);
+      if(err.error.status == 1005 || err.error.status == 1007) this.router.navigateByUrl('/home');
+    }); 
+  }
+
+  favoriteByUser(selectedUserId: Number, i: number){
+    this.authenticationService.viewEachFavorites(selectedUserId)
+    .subscribe((res) => {
+      this.arrUser[i].favorite= res.data.length
+    }, (err) =>{
+      console.log(err.error.message);
+      if(err.error.status == 201) this.arrUser[i].favorite= 0;
+      if(err.error.status == 1005 || err.error.status == 1007) this.router.navigateByUrl('/home');
+    }); 
   }
 
   refresh(){
@@ -23,10 +77,10 @@ export class AllUserComponent implements OnInit {
       console.log("success view users");
       this.arrUser = res.data;
 
-      this.authenticationService.viewRequests()
-      .subscribe((result) => {
-        this.arrRequest = result.data;
-      });
+      for (var i = 0; i < res.data.length; i++){
+        this.bookingByUser(res.data[i].UserId, i);
+        this.favoriteByUser(res.data[i].UserId, i);
+      }
     }, (err) =>{
       console.log(err.error.message)
       if(err.error.status == 1005 || err.error.status == 1007) this.router.navigateByUrl('/home');
@@ -34,7 +88,6 @@ export class AllUserComponent implements OnInit {
   }
 
   deleteUser(selectedUserId: Number){
-    console.log(selectedUserId + "choosen")
     this.authenticationService.deleteUser(selectedUserId)
     .subscribe((res) => {
       console.log("success delete user");
@@ -44,4 +97,6 @@ export class AllUserComponent implements OnInit {
       if(err.error.status == 1005 || err.error.status == 1007) this.router.navigateByUrl('/home');
     }); 
   }
+
+ 
 }

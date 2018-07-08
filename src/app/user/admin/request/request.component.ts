@@ -43,5 +43,4 @@ export class RequestComponent implements OnInit {
       console.log(err.error.message);
     }); 
   }
-
 }

@@ -11,20 +11,14 @@ export class AddRequestComponent implements OnInit {
   successRequest: Boolean;
   invalidRequest: Boolean;
 
-  constructor(private authenticationService: ServicesService, private router:Router){ 
-  }
+  constructor(private authenticationService: ServicesService, private router:Router){}
 
-  ngOnInit() {
-  }
+  ngOnInit(){}
 
   addRequest(){
-    this.successRequest = false;
-    this.invalidRequest = false;
-
     this.authenticationService.addRequest()
     .subscribe((res) => {
-      this.successRequest = true;
-      console.log("yeay");
+      console.log("success add request");
     }, (err) =>{
       console.log(err.error.message)
     }); 

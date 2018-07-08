@@ -21,7 +21,7 @@ export class AdminBookingComponent implements OnInit {
     this.emptyBooking = false;
     this.authenticationService.viewMovieBookings()
     .subscribe((res) => {
-      console.log("success view requests");
+      console.log("success view request");
       this.arrBooking = res.data;
     }, (err) =>{
       console.log(err.error.message)
@@ -30,12 +30,11 @@ export class AdminBookingComponent implements OnInit {
   }
 
   deleteBooking(selectedBookingId : Number) {
-    this.authenticationService.deleteBooking(selectedBookingId)
+    this.authenticationService.deleteBookingByAdmin(selectedBookingId)
     .subscribe((res) => {
       console.log("success delete")
       this.refresh();
     }, (err) =>{
-      console.log("failed delete")
       console.log(err.error.message);
     }); 
   }

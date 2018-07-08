@@ -14,17 +14,35 @@ export class MovieComponent implements OnInit {
   Title: String; emptyTitle: Boolean;
   Description: String; emptyDescription: Boolean;
   Place: String; emptyPlace: Boolean;
+  Datexx: String; emptyDatexx: Boolean;
+  Timexx: String; emptyTimexx: Boolean;
   Datex: String; emptyDatex: Boolean;
-  Time: String; emptyTime: Boolean;
+  Timex: String; emptyTimex: Boolean;
   Price: Number; emptyPrice: Boolean;
   Details: String; emptyDetails: Boolean;
   CoverPhoto: String; emptyCoverPhoto: Boolean;
   invalidPrice: Boolean;
+  arrMovies;
+  arrHouses;
+  chosenTitle : String = "Title"; MovieId : Number;
+  emptyChosenTitle: Boolean;
+  emptyChosenPlace: Boolean;
+  chosenPlace : String = "Movie House"; MovieHouseId: Number;
 
   constructor(private authenticationService: ServicesService, private router:Router){ }
 
   ngOnInit() {
     this.refresh();
+  }
+
+  changeTitle(Title: String, Id: Number){
+    this.chosenTitle = Title;
+    this.MovieId = Id;
+  }
+
+  changeHouse(House: String, Id: Number){
+    this.chosenPlace = House;
+    this.MovieHouseId = Id;
   }
 
   refresh(){
@@ -42,20 +60,21 @@ export class MovieComponent implements OnInit {
   }
 
   falsify(){
-    this.emptyCoverPhoto = this.emptyDetails = this.invalidPrice = this.emptyPlace = this. emptyDescription = this.emptyDatex = this.emptyPrice = this.emptyTitle = this.emptyTime = false;
+    this.emptyDatexx = this.emptyTimexx = this.emptyDatex = this.emptyTimex = this.emptyChosenPlace =  this.emptyChosenTitle = this.emptyCoverPhoto = this.emptyDetails = this.invalidPrice = this.emptyPlace = this. emptyDescription = this.emptyPrice = this.emptyTitle = false;
   }
 
-  addMovieShowing(){
+  addMovie(){
     this.falsify();
     if(!this.Title) this.emptyTitle = true;
     if(!this.Description) this.emptyDescription = true;
     if(!this.Place) this.emptyPlace = true;
-    if(!this.Datex) this.emptyDatex = true;
-    if(!this.Time) this.emptyTime = true;
+    if(!this.Datexx) this.emptyDatexx = true;
+    if(!this.Timexx) this.emptyTimexx = true;
     if(!this.Price) this.emptyPrice = true;
     if(!this.Details) this.emptyDetails = true;
     if(!this.CoverPhoto) this.emptyCoverPhoto= true;
-    this.authenticationService.addMovie(this.Title, this.Description, this.Place, this.Datex, this.Time, this.Price, this.Details, this.CoverPhoto)
+
+    this.authenticationService.addMovie(this.Title, this.Description, this.Place, this.Datexx, this.Timexx, this.Price, this.Details, this.CoverPhoto)
     .subscribe((res) => {
       console.log("success add movie showing");
       location.reload();
@@ -67,14 +86,50 @@ export class MovieComponent implements OnInit {
     }); 
   }
 
+  addShowing(){
+    if(!this.MovieId) this.emptyChosenTitle = true;
+    if(!this.MovieHouseId) this.emptyChosenPlace = true;
+    if(!this.Datex) this.emptyDatex = true;
+    if(!this.Timex) this.emptyTimex = true;
+    this.authenticationService.addShowing(this.MovieId, this.MovieHouseId, this.Datex, this.Timex)
+    .subscribe((res) => {
+      console.log("success addded showing");
+      location.reload();
+    }, (err) =>{
+      console.log(err.error)
+      switch(err.error.status){
+        case 1017: this.invalidPrice = true; break;
+      }
+    }); 
+  }
+
+  viewMovieTitle(){
+    this.authenticationService.viewMovies()
+    .subscribe((res) => {
+      this.arrMovies = res.data;
+      console.log(this.arrMovies)
+    }, (err) =>{
+      console.log(err.error.message);
+      if(err.error.status == 1005 || err.error.status == 1007) this.router.navigateByUrl('/home');
+    }); 
+  }
+
+  viewMovieHouse(){
+    this.authenticationService.viewAllHouses()
+    .subscribe((res) => {
+      this.arrHouses = res.data;
+      console.log(this.arrHouses)
+    }, (err) =>{
+      console.log(err.error.message);
+    }); 
+  }
+
   deleteShowing(selectedId : Number) {
     this.authenticationService.deleteShowingSchedule(selectedId)
     .subscribe((res) => {
       console.log("success delete showing");
-      
       this.refresh();
     }, (err) =>{
-      console.log("failed delete showing");
       console.log(err.error.message);
       if(err.error.status == 1005 || err.error.status == 1007) this.router.navigateByUrl('/home');
     }); 

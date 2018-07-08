@@ -8,7 +8,6 @@ import {Router} from '@angular/router';
   styleUrls: ['./signup-page.component.css']
 })
 export class SignupPageComponent implements OnInit {
-
   Username:String;
   FirstName: String;
   LastName: String;
@@ -26,11 +25,10 @@ export class SignupPageComponent implements OnInit {
   invalidPasswordType: Boolean;
 
   internalError: Boolean;
-  
-  constructor(private authenticationService:AuthenticationService, private router:Router) { }
 
-  ngOnInit() {
-  }
+  constructor(private authenticationService:AuthenticationService, private router:Router){ }
+
+  ngOnInit(){}
 
   falsify(){
     this.usernameEmpty = false;
@@ -45,7 +43,7 @@ export class SignupPageComponent implements OnInit {
     this.notMatch = false;
   }
 
-  signUp(){
+  checkInput(){
     this.falsify();
 
     if(!this.Username) this.usernameEmpty = true; 
@@ -56,7 +54,11 @@ export class SignupPageComponent implements OnInit {
       if(this.Password.length < 4 || this.Password.length > 16) this.invalidPasswordLength = true;
     }
     if (this.Password !== this.cPassword) return this.notMatch = true;
-    
+  }
+
+  signUp(){
+    this.checkInput();
+    if (this.Password !== this.cPassword) return this.notMatch = true;
 
     this.authenticationService.addMember(this.Username, this.FirstName, this.LastName, this.Password)
     .subscribe((res)=>{
@@ -70,7 +72,7 @@ export class SignupPageComponent implements OnInit {
         case 1011: this.invalidPasswordLength = true; break;
         case 1012: this.invalidPasswordType = true; break;
         case 1021: this.existingEmail = true; break;
-        case 500: this.internalError = true; break;
+        case 500: this.internalError = true; this.invalidEmail = true; break;
       }
     });
   }

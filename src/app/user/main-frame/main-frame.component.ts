@@ -20,7 +20,6 @@ export class MainFrameComponent implements OnInit {
   searchEmpty: Boolean;
   seatEmpty: Boolean;
   invalidSeat: Boolean;
-
   constructor(private authenticationService: ServicesService, private router:Router) {
   }
 
@@ -36,8 +35,6 @@ export class MainFrameComponent implements OnInit {
       this.authenticationService.viewFavoriteByUser()
         .subscribe((result)=>{
           this.favorites = result.data;
-          console.log(this.favorites)
-          console.log(this.favorites[0].MovieId)
         });
     });
   }
@@ -112,7 +109,7 @@ export class MainFrameComponent implements OnInit {
     this.seatEmpty = false;
     this.invalidSeat = false;
 
-    if(!this.SeatLetter || !this.SeatNumber) return this.seatEmpty = true;
+    if(!Seat) return this.seatEmpty = true;
 
     this.authenticationService.addBooking(selectedShowingId, Seat)
     .subscribe((res)=>{

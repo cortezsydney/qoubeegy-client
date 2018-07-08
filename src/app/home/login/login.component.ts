@@ -20,13 +20,12 @@ export class LoginComponent implements OnInit {
   ngOnInit() {}
 
   falsify(){
-    this.usernameEmpty = false;
-    this.passwordEmpty = false;
-    this.credentialInvalid = false;
+    this.usernameEmpty = this.passwordEmpty = this.credentialInvalid = false;
   }
   
   signIn(){
     this.falsify();
+    
     if(!this.Username) this.usernameEmpty = true;
     if(!this.Password) this.passwordEmpty = true;
 
