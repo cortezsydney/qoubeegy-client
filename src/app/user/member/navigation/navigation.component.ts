@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import {ServicesService} from './../services/services.service';
-
+import {CookieService} from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-navigation',
@@ -13,7 +13,7 @@ export class NavigationComponent implements OnInit {
   notif: Number;
   User;
   
-  constructor(private authenticationService: ServicesService, private router:Router) { }
+  constructor(private authenticationService: ServicesService, private router:Router, private cookieservice: CookieService) { }
 
   ngOnInit() {
     this.refresh();
@@ -21,7 +21,7 @@ export class NavigationComponent implements OnInit {
 
   refresh(){
     this.User = this.authenticationService.getSession();
-    if(!this.User.FirstName) console.log("HERE");
+    console.log(this.User)
     if(this.User.UserType === "ADMIN") this.admin = true;
 
     this.authenticationService.viewRequests()
@@ -33,6 +33,7 @@ export class NavigationComponent implements OnInit {
   signOut(){
     this.authenticationService.signOut()
     .subscribe((res) => {
+      this.cookieservice.deleteAll();
       console.log("success sign out")
       this.router.navigateByUrl('/home');
     }, (err) =>{

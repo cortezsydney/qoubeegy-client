@@ -36,7 +36,7 @@ export class ServicesService {
 
 
   signOut(){
-    this.cookieservice.deleteAll();
+    
     return this.httpClient.post<any>('http://localhost:3001/api/signout', {withCredentials: true});
   }
   
@@ -96,7 +96,7 @@ export class ServicesService {
   }
 
   viewAllHouses(){
-    return this.httpClient.get<any>(`http://localhost:3001/api/all/movie-houses`);
+    return this.httpClient.get<any>(`http://localhost:3001/api/all/movies/houses`);
   }
 
   viewAllShowingSchedules(){

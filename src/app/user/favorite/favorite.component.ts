@@ -12,8 +12,6 @@ export class FavoriteComponent implements OnInit {
   titleSearch;
   Title: String;
   Place: String;
-  SeatLetter: String;
-  SeatNumber: String;
   titleEmpty: Boolean;
   placeEmpty: Boolean;
   searchEmpty: Boolean;
@@ -56,8 +54,6 @@ export class FavoriteComponent implements OnInit {
   addBooking(selectedShowingId: Number, Seat: String){
     this.seatEmpty = false;
     this.invalidSeat = false;
-
-    if(!this.SeatLetter || !this.SeatNumber) return this.seatEmpty = true;
 
     this.authenticationService.addBooking(selectedShowingId, Seat)
     .subscribe((res)=>{

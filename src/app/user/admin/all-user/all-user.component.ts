@@ -20,9 +20,10 @@ export class AllUserComponent implements OnInit {
   }
 
   clearArr(arr){
-    Object.keys(arr).forEach(key=>{
-      delete arr[key];
-    })
+    // Object.keys(arr).forEach(key=>{
+    //   delete arr[key];
+    // })
+    return arr = [];
   }
 
   bookingByUser(selectedUserId: Number, i: number){
@@ -37,15 +38,16 @@ export class AllUserComponent implements OnInit {
   }
 
   viewBookings(selectedUserId: Number, i: number){
-    
     this.authenticationService.viewEachBookings(selectedUserId)
     .subscribe((res) => {
       this.numBooking = res.data;
+      console.log(this.numBooking)
     }, (err) =>{
       console.log(err.error.message);
-      this.clearArr(this.numBooking);
+      this.numBooking = [];
       if(err.error.status == 1005 || err.error.status == 1007) this.router.navigateByUrl('/home');
     }); 
+    
   }
 
   viewFavorites(selectedUserId: Number, i: number){
@@ -53,11 +55,13 @@ export class AllUserComponent implements OnInit {
     this.authenticationService.viewEachFavorites(selectedUserId)
     .subscribe((res) => {
       this.numFavorite = res.data;
+      console.log(this.numFavorite)
     }, (err) =>{
       console.log(err.error.message);
-      this.clearArr(this.numFavorite);
+      this.numFavorite = [];
       if(err.error.status == 1005 || err.error.status == 1007) this.router.navigateByUrl('/home');
     }); 
+    
   }
 
   favoriteByUser(selectedUserId: Number, i: number){

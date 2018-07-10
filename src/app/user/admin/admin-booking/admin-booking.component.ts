@@ -33,7 +33,7 @@ export class AdminBookingComponent implements OnInit {
     this.authenticationService.deleteBookingByAdmin(selectedBookingId)
     .subscribe((res) => {
       console.log("success delete")
-      this.refresh();
+      location.reload();
     }, (err) =>{
       console.log(err.error.message);
     }); 

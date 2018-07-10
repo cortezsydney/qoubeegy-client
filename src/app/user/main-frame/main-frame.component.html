@@ -60,6 +60,7 @@
             </div>
 
             <body>
+                
                 <div class="container" style="top: 10%; width: 100%; background-color: white">                                                                                    
                 <div class="table">          
                 <table class="table">
@@ -85,15 +86,19 @@
                             <td>P{{title.Price}}</td>
                             <div class="md-form mb-5">
                                 <input [(ngModel)]="title.Seat" class="form-control" placeholder="[A-J, 0-9]" name="seatLetter">
-                                <div *ngIf="seatEmpty" class="prompt" style="color: red"> Seat is required </div>
-                                <div *ngIf="invalidSeat" class="prompt" style="color: red"> Seat is already taken </div>
+                                 
                             </div>
                             <td>
                                 <button class="fa fa-check" type="button" (click)="addBooking(title.MovieShowingId, title.Seat)" style="background-color: white !important; color: #46344E; font-size: 20px; text-align: center; width: 20px;"></button>
                             </td>
                         </tr>
-                </tbody>        
+                        
+                        
+                </tbody>      
+                 
             </table>
+            <div *ngIf="seatEmpty" class="prompt" style="color: red; float: right;"> Seat is required     </div>
+            <div *ngIf="invalidSeat" class="prompt" style="color: red"> Seat is already taken </div>
             </div>
             </div>
         </body>        

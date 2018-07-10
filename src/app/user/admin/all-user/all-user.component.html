@@ -11,7 +11,7 @@
     <div class="profile-bio">
      <h4 style="color: red">{{user.UserType}}</h4>
      <h5>Member since: {{user.Since}}</h5>
-     <div style="width: 50%; float: left" role="button" (click) = "viewBookings(user.UserId)" role="button" data-toggle="modal" data-target="#modalShowFavorite">
+     <div style="width: 50%; float: left" role="button" (click) = "viewFavorites(user.UserId); viewBookings(user.UserId);" role="button" data-toggle="modal" data-target="#modalShowFavorite">
         <h3 style="color: #faed26">{{user.booking}}</h3>
           <h4>BOOKINGS</h4> 
      </div>
@@ -103,7 +103,7 @@
                             <th>Seat</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody *ngIf="numBooking">
                         <tr *ngFor="let book of numBooking; let i=index">
                             <td>{{i+1}}</td>
                             <td>{{book.Title}}</td>
@@ -134,7 +134,7 @@
                             <th>Description</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody *ngIf="numFavorite">
                         <tr *ngFor="let book of numFavorite; let i=index">
                             <td>{{i+1}}</td>
                             <td>{{book.Title}}</td>

@@ -25,7 +25,7 @@ export class BookingComponent implements OnInit {
       this.arrBooking = res.data;
     }, (err) =>{
       if(err.error.status == 201) this.emptyBooking = true;
-      console.log(err.error.message)
+      
     }); 
   }
 
