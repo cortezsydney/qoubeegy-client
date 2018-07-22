@@ -1,6 +1,6 @@
 <app-navigation></app-navigation>
 
-<div style="background-color: #46344E; margin: 0 0 0 0;"> 
+<div style="background-color: #46344E; margin: 0 0 0 0;">
     <button data-toggle="collapse" type="here" data-target="#demo" style="height: 100%; background-color: #46344E; height: 30% !important; color: white">Customize Search</button>
     <div id="demo" class="collapse">
             <input [(ngModel)]="Title" placeholder="Title" style="width:100%" (keyup)="viewBy()">
@@ -15,11 +15,11 @@
             <input [(ngModel)]="Title" id="search" name="search" type="text" placeholder="What're we looking for ?" style="color: black" (keyup)="viewBy()" ><input id="search_submit" value="Rechercher" type="submit">
         </form>
     </div>
-      
+
     <section id="team" class="pb-5"  style="width: 90%; margin-left: 140px">
       <div class="container">
           <h5 class="section-title h1" style="left:0">Now Showing</h5>
-    
+
           <div class="row" *ngIf="!searchEmpty">
               <div class="col-md-3" *ngFor="let movie of movies">
                   <div class="image-flip" ontouchstart="this.classList.toggle('hover');" style="width: 200px;">
@@ -34,8 +34,8 @@
                                   <div class="card-body text-center mt-4">
                                     <h2 class="card-title"><a style="color: #faed26" href={{movie.Details}}>{{movie.Title}}</a></h2>
                                       <p style="color: white">{{movie.Description}}</p>
-                                        <ul class="list-inline" style="position:absolute; bottom: 0"> 
-                                            <a role="button" (click) = "addFavorite(movie.MovieId)" class="btn btn-primary" style="background-color: red; color: white; margin: 0 14px">Favorite <i class="fa fa-heart-o"></i></a>                       
+                                        <ul class="list-inline" style="position:absolute; bottom: 0">
+                                            <a role="button" (click) = "addFavorite(movie.MovieId)" class="btn btn-primary" style="background-color: red; color: white; margin: 0 14px">Favorite <i class="fa fa-heart-o"></i></a>
                                             <a role="button" (click) = "searchMovie(movie.Title)" data-toggle="modal" data-target="#modalBookForm2" class="btn btn-primary" >Book <i class="fa fa-plus"></i></a>
                                         </ul>
                                   </div>
@@ -46,7 +46,7 @@
                 </div>
           </div>
         </div>
-    </section> 
+    </section>
   </div>
 
 <div class="modal fade" id="modalBookForm2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
@@ -55,14 +55,12 @@
             <div style="float: right">
                 <a class="cancelbtn fa fa-times fa-2x" type="button" data-dismiss="modal" aria-label="Close"></a>
             </div>
-            <div class="modal-header text-center">            
-                <h3 class="modal-title w-100 font-weight-bold">Add Movie Booking</h3>   
+            <div class="modal-header text-center">
+                <h3 class="modal-title w-100 font-weight-bold">Add Movie Booking</h3>
             </div>
-
             <body>
-                
-                <div class="container" style="top: 10%; width: 100%; background-color: white">                                                                                    
-                <div class="table">          
+                <div class="container" style="top: 10%; width: 100%; background-color: white">
+                <div class="table">
                 <table class="table">
                     <thead style="background-color: yellow">
                         <tr>
@@ -86,21 +84,21 @@
                             <td>P{{title.Price}}</td>
                             <div class="md-form mb-5">
                                 <input [(ngModel)]="title.Seat" class="form-control" placeholder="[A-J, 0-9]" name="seatLetter">
-                                 
+
                             </div>
                             <td>
                                 <button class="fa fa-check" type="button" (click)="addBooking(title.MovieShowingId, title.Seat)" style="background-color: white !important; color: #46344E; font-size: 20px; text-align: center; width: 20px;"></button>
                             </td>
                         </tr>
-                        
-                        
-                </tbody>      
-                 
+
+
+                </tbody>
+
             </table>
             <div *ngIf="seatEmpty" class="prompt" style="color: red; float: right;"> Seat is required     </div>
             <div *ngIf="invalidSeat" class="prompt" style="color: red"> Seat is already taken </div>
             </div>
             </div>
-        </body>        
+        </body>
     </div>
 </div>
