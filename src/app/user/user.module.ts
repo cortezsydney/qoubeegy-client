@@ -19,13 +19,19 @@ import { AdminBookingComponent } from './admin/admin-booking/admin-booking.compo
 import { AllUserComponent } from './admin/all-user/all-user.component';
 import { MainFrameComponent } from './main-frame/main-frame.component';
 import { RequestComponent } from './admin/request/request.component';
+
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+
+const config: SocketIoConfig = { url: 'http://localhost:3001', options: {} };
+
 @NgModule({
   imports: [
     FormsModule,
     ReactiveFormsModule,
     CommonModule,
     UserRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    SocketIoModule.forRoot(config)
   ],
   declarations: [NavigationComponent, EditProfileComponent, AddRequestComponent, BookingComponent, FavoriteComponent, MovieComponent, AdminBookingComponent, AllUserComponent, MainFrameComponent, RequestComponent],
   providers : [ServicesService, CookieService]

@@ -11,6 +11,10 @@ export class ServicesService {
     return JSON.parse(this.cookieservice.get("qoubeegy-user"));
   }
 
+  viewSeats(MovieShowingId: Number){
+    return this.httpClient.post<any>('http://localhost:3001/api/booking/all/seats', {MovieShowingId}, {withCredentials: true});
+  }
+
   editProfile(FirstName: String, LastName: String, NewPassword:String, OldPassword: String){
     console.log(this.cookieservice.get("qoubeegy-user"))
     const User = JSON.parse(this.cookieservice.get("qoubeegy-user"));
@@ -36,15 +40,15 @@ export class ServicesService {
 
 
   signOut(){
-    
+
     return this.httpClient.post<any>('http://localhost:3001/api/signout', {withCredentials: true});
   }
-  
+
   deleteBooking(MovieBookingId: Number){
     return this.httpClient.delete<any>(`http://localhost:3001/api/booking/delete/${MovieBookingId}`,  {withCredentials: true});
   }
 
-  
+
   deleteBookingByAdmin(MovieBookingId: Number){
     console.log(MovieBookingId)
     return this.httpClient.delete<any>(`http://localhost:3001/api/booking/delete/user/${MovieBookingId}`,  {withCredentials: true});
@@ -58,7 +62,7 @@ export class ServicesService {
     return this.httpClient.get<any>('http://localhost:3001/api/all/movies');
   }
 
-  
+
 
   rejectRequest(UserId: Number){
     return this.httpClient.delete<any>(`http://localhost:3001/api/profile/apply/reject/${UserId}`, {withCredentials: true});

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ServicesService} from '../member/services/services.service';
 import {Router} from '@angular/router';
+import { WebsocketService } from '../member/services/websocket.service';
 
 @Component({
   selector: 'app-main-frame',
@@ -20,11 +21,19 @@ export class MainFrameComponent implements OnInit {
   searchEmpty: Boolean;
   seatEmpty: Boolean;
   invalidSeat: Boolean;
-  constructor(private authenticationService: ServicesService, private router:Router) {
+  takenSeats=[];
+  selectedMovieShowingId;
+  selectedSeat: String;
+  clientSeat: String;
+
+  constructor(private authenticationService: ServicesService, private router:Router, private socketService: WebsocketService) {
   }
 
   ngOnInit() {
     this.refresh();
+    this.socketService.onEvent("add-booking").subscribe(result => {
+      this.clientSeat = result.Seat;
+    });
   }
 
   refresh(){
@@ -36,6 +45,15 @@ export class MainFrameComponent implements OnInit {
         .subscribe((result)=>{
           this.favorites = result.data;
         });
+    });
+  }
+
+  viewSeats(MovieShowingId: Number) {
+    this.selectedMovieShowingId = MovieShowingId;
+    this.authenticationService.viewSeats(MovieShowingId).subscribe(result => {
+      this.takenSeats = result.data.map(seat => seat.Seat);
+    }, err => {
+      console.log(err.error);
     });
   }
 
@@ -105,13 +123,27 @@ export class MainFrameComponent implements OnInit {
     });
   }
 
-  addBooking(selectedShowingId: Number, Seat: String){
+  selectSeat(Seat: String) {
+    this.selectedSeat = Seat;
+    this.socketService.addBooking({MovieShowingId: this.selectedMovieShowingId, Seat: this.selectedSeat});
+  }
+
+  checkSelectedSeat(Seat) {
+    if(this.selectedSeat === Seat) {
+      return true;
+    }
+    if (this.clientSeat === Seat) {
+      return true;
+    }
+  }
+
+  addBooking(){
     this.seatEmpty = false;
     this.invalidSeat = false;
 
-    if(!Seat) return this.seatEmpty = true;
+    if(!this.selectedSeat) return this.seatEmpty = true;
 
-    this.authenticationService.addBooking(selectedShowingId, Seat)
+    this.authenticationService.addBooking(this.selectedMovieShowingId, this.selectedSeat)
     .subscribe((res)=>{
       console.log("success add booking");
       location.reload();
@@ -121,8 +153,12 @@ export class MainFrameComponent implements OnInit {
         case 1005: this.router.navigateByUrl('/home'); break;
         case 1008: this.seatEmpty = true; break;
         case 1026: this.invalidSeat = true; break;
-      } 
+      }
     });
+  }
+
+  checkIfTaken(seat: string) {
+    return this.takenSeats.includes(seat);
   }
 
   searchMovie(selectedMovieTitle: String){
@@ -134,7 +170,7 @@ export class MainFrameComponent implements OnInit {
         if(err.error.status === 1005) this.router.navigateByUrl('/home')
       });
   }
-  
+
   deleteFavorite(selectedFavoriteId: Number){
     this.authenticationService.deleteFavorite(selectedFavoriteId)
     .subscribe((res) => {
@@ -144,6 +180,6 @@ export class MainFrameComponent implements OnInit {
       if(err.error.status == 1005) this.router.navigateByUrl('/home');
       console.log(err.error)
       console.log("failed delete favorite")
-    }); 
+    });
   }
 }
